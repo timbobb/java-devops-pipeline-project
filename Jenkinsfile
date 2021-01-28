@@ -65,6 +65,6 @@ pipeline {
                     resolverId: "MAVEN_RESOLVER"
                 )
          }
-    
+      }
     }
 }	
