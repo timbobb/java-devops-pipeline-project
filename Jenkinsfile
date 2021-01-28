@@ -20,6 +20,17 @@ pipeline {
           }
         }
       }  
-    
+
+      stage ('SonarQube Analysis') {
+        steps {
+              withSonarQubeEnv('sonar') {
+                
+				dir('java-source'){
+                 sh 'mvn -U clean install sonar:sonar'
+                }
+				
+              }
+            }
+      } 
     }
 }	
