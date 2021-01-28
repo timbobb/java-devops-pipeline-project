@@ -36,7 +36,7 @@ pipeline {
             steps {
                 rtServer (
                     id: "jfrog",
-                    url: "http://3.84.217.9:8082/artifactory",
+                    url: "http://54.183.152.80:8082/artifactory",
                     credentialsId: "jfrog"
                 )
 
@@ -54,6 +54,6 @@ pipeline {
                     snapshotRepo: "libs-snapshot"
                 )
             }
-    }
+      }
     }
 }	
