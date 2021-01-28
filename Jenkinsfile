@@ -32,5 +32,28 @@ pipeline {
               }
             }
       } 
+          stage ('Artifactory configuration') {
+            steps {
+                rtServer (
+                    id: "jfrog",
+                    url: "http://3.84.217.9:8082/artifactory",
+                    credentialsId: "jfrog"
+                )
+
+                rtMavenDeployer (
+                    id: "MAVEN_DEPLOYER",
+                    serverId: "jfrog",
+                    releaseRepo: "libs-release",
+                    snapshotRepo: "libs-snapshot"
+                )
+
+                rtMavenResolver (
+                    id: "MAVEN_RESOLVER",
+                    serverId: "jfrog",
+                    releaseRepo: "libs-release",
+                    snapshotRepo: "libs-snapshot"
+                )
+            }
+    }
     }
 }	
