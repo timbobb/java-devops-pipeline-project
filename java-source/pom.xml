@@ -71,7 +71,7 @@
     <repository>
         <id>central</id>
         <name>ip-172-31-45-224.ec2.internal-releases</name>
-        <url>http://3.84.217.9:8082/artifactory/libs-release</url>
+        <url>http://52.53.45.237:8082/artifactory/libs-release</url>
     </repository>
 </distributionManagement>
 
