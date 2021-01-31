@@ -60,7 +60,7 @@ pipeline {
     
       }
 
-        stage ('Deploy Artifacts') {
+      stage ('Deploy Artifacts') {
             steps {
                 rtMavenRun (
                     tool: "MAVEN_HOME", // Tool name from Jenkins configuration
@@ -82,7 +82,7 @@ pipeline {
                 }
             
     }
-        stage('Build Container Image') {
+      stage('Build Container Image') {
             
             steps {
                   sshagent(['sshkey']) {
@@ -104,6 +104,14 @@ pipeline {
                 }
             
     }
+      stage('Waiting for Approvals') {
+            
+        steps{
+
+				input('Test Completed ? Please provide  Approvals for Prod Release ?')
+			  }
+            
+    }   
    }
 }
 
