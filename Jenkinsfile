@@ -71,7 +71,7 @@ pipeline {
                 )
          }
         }
-        stage('Copy Dockerfile & Playbook to Ansible Server') {
+      stage('Copy Dockerfile & Playbook to Ansible Server') {
             
             steps {
                   sshagent(['sshkey']) {
@@ -98,8 +98,8 @@ pipeline {
             steps {
                   sshagent(['sshkey']) {
                        
-                        sh "scp -o StrictHostKeyChecking=no create-k8s-deployment.yaml ec2-user@52.8.254.125:/home/ec2-user"
-                        sh "scp -o StrictHostKeyChecking=no nodePort.yaml ec2-user@52.8.254.125:/home/ec2-user"
+                        sh "scp -o StrictHostKeyChecking=no create-k8s-deployment.yaml ec2-user@54.193.147.15:/home/ec2-user"
+                        sh "scp -o StrictHostKeyChecking=no nodePort.yaml ec2-user@54.193.147.15:/home/ec2-user"
                     }
                 }
             
