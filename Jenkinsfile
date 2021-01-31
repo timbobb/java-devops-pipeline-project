@@ -12,7 +12,8 @@ pipeline {
           checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git', url: 'https://github.com/timbobb/java-devops-pipeline-project.git']]])
         }
       }
-      	  stage ('Build')  {
+
+      stage ('Build')  {
 	      steps {
           
             dir('java-source'){
@@ -21,6 +22,7 @@ pipeline {
         }
          
       }
+
       stage ('SonarQube Analysis') {
         steps {
               withSonarQubeEnv('sonar') {
@@ -31,7 +33,8 @@ pipeline {
 				
               }
             }
-           }
+      }
+
       stage ('Artifactory configuration') {
             steps {
                 rtServer (
@@ -55,7 +58,8 @@ pipeline {
                 )
             }
     
-    }
+      }
+
         stage ('Deploy Artifacts') {
             steps {
                 rtMavenRun (
@@ -67,6 +71,17 @@ pipeline {
                 )
          }
         }
+        stage('Copy Dockerfile & Playbook to Ansible Server') {
+            
+            steps {
+                  sshagent(['sshkey']) {
+                       
+                        sh "scp -o StrictHostKeyChecking=no Dockerfile ec2-user@54.193.147.15:/home/ec2-user"
+                        sh "scp -o StrictHostKeyChecking=no create-container-image.yaml ec2-user@54.193.147.15:/home/ec2-user"
+                    }
+                }
+            
+    }
   }
 }
 
