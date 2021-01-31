@@ -82,6 +82,17 @@ pipeline {
                 }
             
     }
+        stage('Build Container Image') {
+            
+            steps {
+                  sshagent(['sshkey']) {
+                       
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@54.193.147.15 -C \"sudo ansible-playbook create-container-image.yaml\""
+                        
+                    }
+                }
+            
+    } 
   }
 }
 
