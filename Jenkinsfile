@@ -117,8 +117,8 @@ pipeline {
             steps {
                   sshagent(['sshkey']) {
                        
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@54.193.147.15 -C \"sudo kubectl apply -f create-k8s-deployment.yaml\""
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@54.193.147.15 -C \"sudo kubectl apply -f nodePort.yaml\""
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@54.193.147.15 -C \"kubectl apply -f create-k8s-deployment.yaml\""
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@54.193.147.15 -C \"kubectl apply -f nodePort.yaml\""
                         
                     }
                 }
