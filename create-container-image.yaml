@@ -9,7 +9,7 @@
       url: http://52.53.45.237:8082/artifactory/libs-release/com/iwayq/iwayQApp/1.0-RELEASE/iwayQApp-1.0-RELEASE.war
       dest: /home/ec2-user
       url_username: admin
-      url_password: Bingo#123
+      url_password: Admin#123
 
   - name: Rename .war Artifact
     command: mv iwayQApp-1.0-RELEASE.war iwayq.war
@@ -32,7 +32,7 @@
   - name: Log into DockerHub
     docker_login:
      username: timbobb
-     password: Bingo#123
+     password: Admin#123
 
     
   - name: Push to docker hub
